@@ -16,6 +16,19 @@ function App() {
         setToDos((currentArray) => [toDo, ...currentArray]);
         setToDo("");
     };
+    // :toDo값 삭제
+    const delClick = (index) => {
+        setToDos((currentArray) =>
+            currentArray.filter((_, curIndex) => curIndex !== index)
+        );
+    };
+    // const delClickOnce = (event) => {
+    //     const index = parseInt(event.target.className);
+    //     setToDos((currentArray) =>
+    //         currentArray.filter((_, curIndex) => curIndex !== index)
+    //     );
+    // };
+
     console.log(toDos);
 
     return (
@@ -30,6 +43,18 @@ function App() {
                 />
                 <button>Add To Do</button>
             </form>
+            <hr />
+            <ul>
+                {toDos.map((item, index) => (
+                    <li key={index}>
+                        {item}
+                        <button onClick={() => delClick(index)}>❌</button>
+                        {/* <button className={index} onClick={delClickOnce}>
+                            ❌
+                        </button> */}
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
