@@ -11,7 +11,11 @@ function Movie({ id, coverImg, title, year, summary, genres }) {
                     {title} ({year})
                 </Link>
             </h2>
-            <p>{summary}</p>
+            <p>
+                {summary.length > 220
+                    ? `${summary.slice(0, 220)} ...`
+                    : summary}
+            </p>
             <ul>
                 {/* genres가 존재할 경우에만(Optional Chanining) */}
                 {genres?.map((g) => (

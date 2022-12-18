@@ -5,7 +5,7 @@ import Home from "./routes/Home";
 // 라우터 역할
 function App() {
     return (
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
             <Routes>
                 {/* Home 화면 라우트 */}
                 <Route path="/" element={<Home />} />
