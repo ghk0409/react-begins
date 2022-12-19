@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
 import Detail from "./routes/Detail";
 import Home from "./routes/Home";
 
@@ -6,6 +7,7 @@ import Home from "./routes/Home";
 function App() {
     return (
         <Router basename={process.env.PUBLIC_URL}>
+            <Header />
             <Routes>
                 {/* Home 화면 라우트 */}
                 <Route path="/" element={<Home />} />

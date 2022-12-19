@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import styles from "./Detail.module.css";
 
 function Detail() {
     // URL parameter 값 가져오기
@@ -24,22 +25,31 @@ function Detail() {
     }, [getMovieDetail]);
 
     return loading ? (
-        <h2>Loading...</h2>
+        <div className={styles.loader}>
+            <span>Loading...</span>
+        </div>
     ) : (
-        <div>
-            <img src={movie.large_cover_image} alt={movie.title} />
-            <h2>
-                {movie.title} ({movie.year})
-            </h2>
-            <h4>Uploaded: {movie.date_uploaded}</h4>
-            <h4>Rating: {movie.rating}</h4>
-            <p>{movie.description_full}</p>
-            <ul>
-                {/* genres가 존재할 경우에만(Optional Chanining) */}
-                {movie.genres?.map((g) => (
-                    <li key={g}>{g}</li>
-                ))}
-            </ul>
+        <div className={styles.container}>
+            <div className={styles.movie}>
+                <img
+                    src={movie.medium_cover_image}
+                    alt={movie.title}
+                    className={styles.movie__img}
+                />
+                <div>
+                    <h2 className={styles.movie__title}>{movie.title}</h2>
+                    <h3 className={styles.movie__year}>{movie.year}</h3>
+                    <h4>Uploaded: {movie.date_uploaded}</h4>
+                    <h4>Rating: {movie.rating}</h4>
+                    <p>{movie.description_full}</p>
+                    <ul className={styles.movie__genres}>
+                        {/* genres가 존재할 경우에만(Optional Chanining) */}
+                        {movie.genres?.map((g) => (
+                            <li key={g}>{g}</li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
         </div>
     );
 }
